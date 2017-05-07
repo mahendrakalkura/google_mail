@@ -59,6 +59,15 @@ func getConfig() *oauth2.Config {
 	return config
 }
 
+func getService(client *http.Client) *gmail.Service {
+	service, serviceErr := gmail.New(client)
+	if serviceErr != nil {
+		log.Fatalf("%v\n", serviceErr)
+	}
+
+	return service
+}
+
 func getToken(config *oauth2.Config) *oauth2.Token {
 	token, err := getTokenFromFile()
 	if err == nil {
@@ -110,15 +119,6 @@ func setToken(token *oauth2.Token) {
 	defer file.Close()
 
 	json.NewEncoder(file).Encode(token)
-}
-
-func getService(client *http.Client) *gmail.Service {
-	service, serviceErr := gmail.New(client)
-	if serviceErr != nil {
-		log.Fatalf("%v\n", serviceErr)
-	}
-
-	return service
 }
 
 func fetch(q string, maxResults int64) []message {
