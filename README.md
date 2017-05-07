@@ -13,8 +13,5 @@ $ go get github.com/mahendrakalkura/google_mail
 ## How to use?
 
 ```
-$ ./google_mail
-Open the following URL in your browser: https://accounts.google.com/o/oauth2/auth?...
-Code: ...
 $ ./google_mail --help
 ```
